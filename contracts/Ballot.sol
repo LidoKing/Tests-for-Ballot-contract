@@ -23,13 +23,13 @@ contract Ballot {
 
     // This declares a state variable that
     // stores a `Voter` struct for each possible address.
-    mapping(address => Voter) public voters;
+    mapping(address => Voter) private voters;
 
     // A dynamically-sized array of `Proposal` structs.
     Proposal[] public proposals;
 
     /// Create a new ballot to choose one of `proposalNames`.
-    constructor(bytes32[] memory proposalNames) public {
+    constructor(bytes32[] memory proposalNames) {
         chairperson = msg.sender;
         voters[chairperson].weight = 1;
 
