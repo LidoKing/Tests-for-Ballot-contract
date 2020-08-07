@@ -8,7 +8,9 @@
     "compile": "truffle compile",
     "testrpc": "ganache-cli",
     "migrate": "truffle migrate",
-    "init": "truffle init"
+    "init": "truffle init",
+    "create": "truffle create",
+    "debug": "truffle debug"
   },
   "keywords": [],
   "author": "",
