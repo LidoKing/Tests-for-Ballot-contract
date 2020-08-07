@@ -47,6 +47,11 @@ contract Ballot {
         }
     }
 
+    function getProposals(uint _id) public view returns(bytes32) {
+      bytes32 proposalName = proposals[_id].name;
+      return proposalName;
+    }
+
     // Give `voter` the right to vote on this ballot.
     // May only be called by `chairperson`.
     function giveRightToVote(address voter) public {
