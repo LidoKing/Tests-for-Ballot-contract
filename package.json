@@ -10,8 +10,12 @@
     "migrate": "truffle migrate",
     "init": "truffle init",
     "create": "truffle create",
+<<<<<<< HEAD
     "debug": "truffle debug",
     "deploy": "truffle deploy"
+=======
+    "debug": "truffle debug"
+>>>>>>> 079dc03d84aa870a84cd36208ae5a5e996132640
   },
   "keywords": [],
   "author": "",
