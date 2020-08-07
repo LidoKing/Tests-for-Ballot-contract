@@ -1,5 +1,5 @@
 const Ballot = artifacts.require("Ballot")
 
 module.exports = function (deployer) {
-  deployer.deploy(Ballot, ['example proposal'])
+  deployer.deploy(Ballot, ['0x0'])
 }
