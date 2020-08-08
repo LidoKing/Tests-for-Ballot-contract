@@ -14,7 +14,7 @@ contract("Ballot", (accounts) => {
     instance = await Ballot.new([hex('example'), hex('example1'), hex('example2')]);
   });
 
-  it("should have bob as chairperson and add proposals", async () => {
+  it("should have bob as chairperson and initialized with proposals", async () => {
     const chairperson = await instance.chairperson.call();
     const proposalHex = await instance.getProposals(2);
     const proposalName = web3.utils.hexToUtf8(proposalHex);
@@ -28,5 +28,13 @@ contract("Ballot", (accounts) => {
     const samWeight = await instance.getVoterWeight(sam);
     expect(aliceWeight.toNumber()).to.equal(1);
     expect(samWeight.toNumber()).to.equal(0);
+  });
+
+  it("should allow voters to delegate", async () => {
+    const giveRight = await instance.giveRightToVote(alice, {from: bob});
+    const giveRight1 = await instance.giveRightToVote(sam, {from: bob});
+    const delegate = await instance.delegate(alice, {from:sam});
+    const aliceWeight = await instance.getVoterWeight(alice);
+    expect(aliceWeight.toNumber()).to.equal(2);
   });
 });
