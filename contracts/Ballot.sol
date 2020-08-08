@@ -77,6 +77,10 @@ contract Ballot {
         voters[voter].weight = 1;
     }
 
+    function getVoterWeight(address _voterAddress) public view returns(uint _votingWeight) {
+      return voters[_voterAddress].weight;
+    }
+
     /// Delegate your vote to the voter `to`.
     function delegate(address to) public {
         // assigns reference
