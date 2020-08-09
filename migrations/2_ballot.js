@@ -6,5 +6,8 @@ function hex(_string) {
 }
 
 module.exports = function (deployer) {
-  deployer.deploy(Ballot, [hex('example'), hex('example1'), hex('example2')])
+  deployer.deploy(
+    Ballot,
+    [hex('example'), hex('example1'), hex('example2')],
+  )
 }
