@@ -49,25 +49,6 @@ contract Ballot {
         }
     }
 
-    // Getter functions for testing
-    // Get name of proposal by its index
-    function getProposalName(uint _id) public view returns(bytes32) {
-      bytes32 proposalName = proposals[_id].name;
-      return proposalName;
-    }
-
-    // Get number of votes a proposal has by its index
-    function getProposalVoteCount(uint _id) public view returns(uint) {
-      uint proposalVoteCount = proposals[_id].voteCount;
-      return proposalVoteCount;
-    }
-
-
-    // Get the weight of a voter by its address
-    function getVoterWeight(address _voterAddress) public view returns(uint) {
-      return voters[_voterAddress].weight;
-    }
-
     // Give `voter` the right to vote on this ballot.
     // May only be called by `chairperson`.
     function giveRightToVote(address voter) public {
@@ -170,5 +151,24 @@ contract Ballot {
             returns (bytes32 winnerName_)
     {
         winnerName_ = proposals[winningProposal()].name;
+    }
+
+    // Getter functions for testing
+    // Get name of proposal by its index
+    function getProposalName(uint _id) public view returns(bytes32) {
+      bytes32 proposalName = proposals[_id].name;
+      return proposalName;
+    }
+
+    // Get number of votes a proposal has by its index
+    function getProposalVoteCount(uint _id) public view returns(uint) {
+      uint proposalVoteCount = proposals[_id].voteCount;
+      return proposalVoteCount;
+    }
+
+
+    // Get the weight of a voter by its address
+    function getVoterWeight(address _voterAddress) public view returns(uint) {
+      return voters[_voterAddress].weight;
     }
 }
