@@ -14,7 +14,7 @@ contract("Ballot", (accounts) => {
     instance = await Ballot.new([hex('example'), hex('example1'), hex('example2')]);
   });
 
-  it("should have bob as chairperson and initialized with proposals", async () => {
+  it("should have bob as chairperson and initialize proposals", async () => {
     const chairperson = await instance.chairperson.call();
     const proposalHex = await instance.getProposalName(2);
     const proposalName = web3.utils.hexToUtf8(proposalHex);
