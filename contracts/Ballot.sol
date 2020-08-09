@@ -28,6 +28,8 @@ contract Ballot {
     // A dynamically-sized array of `Proposal` structs.
     Proposal[] public proposals;
 
+    event currentVoteCount(uint _numberOfVotes);
+
     /// Create a new ballot to choose one of `proposalNames`.
     constructor(bytes32[] memory proposalNames) public {
         chairperson = msg.sender;
@@ -47,9 +49,18 @@ contract Ballot {
         }
     }
 
-    function getProposals(uint _id) public view returns(bytes32) {
+    function getProposalName(uint _id) public view returns(bytes32) {
       bytes32 proposalName = proposals[_id].name;
       return proposalName;
+    }
+
+    function getProposalVoteCount(uint _id) public view returns(uint) {
+      uint proposalVoteCount = proposals[_id].voteCount;
+      return proposalVoteCount;
+    }
+
+    function getVoterWeight(address _voterAddress) public view returns(uint) {
+      return voters[_voterAddress].weight;
     }
 
     // Give `voter` the right to vote on this ballot.
@@ -75,10 +86,6 @@ contract Ballot {
         );
         require(voters[voter].weight == 0);
         voters[voter].weight = 1;
-    }
-
-    function getVoterWeight(address _voterAddress) public view returns(uint _votingWeight) {
-      return voters[_voterAddress].weight;
     }
 
     /// Delegate your vote to the voter `to`.
@@ -133,6 +140,8 @@ contract Ballot {
         // this will throw automatically and revert all
         // changes.
         proposals[proposal].voteCount += sender.weight;
+
+        emit currentVoteCount(proposals[proposal].voteCount);
     }
 
     /// @dev Computes the winning proposal taking all
